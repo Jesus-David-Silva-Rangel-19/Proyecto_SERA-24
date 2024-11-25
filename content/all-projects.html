@@ -113,6 +113,20 @@
             
     }
 
+    /* Anuncios */
+    /* Estilos para la sección de anuncios */
+    .ad-section {
+        margin: 40px 0;
+        padding: 20px;
+        border: 2px dashed #ccc;
+        background-color: #f9f9f9;
+    }
+
+    .ad-section img {
+        max-width: 100%;
+        height: auto;
+    }
+
 </style>
 
 <body>
@@ -258,6 +272,21 @@
             </div>
         </div>
 
+
+        <div class="ad-section">
+            <!-- Anuncio de Google AdSense -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- Nombre del bloque de anuncios -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="tu-código-de-cliente"
+                 data-ad-slot="tu-código-de-slot"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
 
         <!-- Paginación -->
         <nav>
@@ -453,6 +482,19 @@
             });
 
             // Aquí puedes agregar la lógica para guardar la valoración si es necesario
+        });
+
+        // Alerta de Sistema de favoritos
+        $('.favorite-btn').click(function() {
+            Swal.fire({
+                toast: true,
+                position: 'bottom-end',
+                icon: 'success',
+                title: 'Proyecto guardado',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true
+            });
         });
 
         // Paginación (ejemplo simple)
