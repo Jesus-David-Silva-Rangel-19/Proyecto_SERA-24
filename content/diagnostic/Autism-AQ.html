@@ -1,0 +1,352 @@
+<!--
+LISTA DE VERIFICACIÓN
+
+1. Mostrar 10 preguntas por página.
+2. Correjir el problema de que solo calcula las 10 preguntas por página, en vez de las 50, por eso no paso de 10 el puntaje.
+3. Actualmente puse las 50 preguntas en una pagina y calcula bien el resultado.
+
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cuestionario AQ | SERA-24</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/fontawesome/4.7.0/css/font-awesome.min.css">
+    <!-- Incluir Font Awesome desde CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">  
+    <!-- FontAwesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+    <!-- Estilos personalizados -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
+
+        body {
+            background-color: #f7f9fc;
+            font-family: 'Young Serif', serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Patua One';
+            font-variant: small-caps;
+            font-weight: bolder;
+        }
+        /* Contenedor principal */
+        .custom-container {
+            max-width: 900px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        /* Estilos de las preguntas */
+        .question-card {
+            margin-bottom: 20px;
+        }
+        .progress {
+            height: 25px;
+            margin-bottom: 30px;
+        }
+        .btn-group-toggle .btn {
+            width: 100%;
+        }
+        /* Estilos de la barra de progreso */
+        .progress-bar {
+            background-color: #28a745;
+        }
+        /* Estilos para los emojis */
+        .emoji {
+            font-size: 1.2em;
+        }
+        /* Estilo para casillas de selección */
+        .options-group label {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado -->
+    <header class="bg-primary text-white text-center py-4">
+        <h1>🧩 Cuestionario AQ</h1>
+        <p>¡Evalúa tus rasgos del espectro autista!</p>
+    </header>
+
+    <!-- Contenido principal -->
+    <div class="container custom-container">
+        <!-- Barra de progreso -->
+        <div class="progress">
+            <div id="progress-bar" class="progress-bar progress-bar-striped" role="progressbar" style="width: 0%;">0%</div>
+        </div>
+
+        <!-- Formulario -->
+        <form id="quiz-form">
+            <div class="row" id="question-container">
+                <!-- Las preguntas se cargarán aquí dinámicamente -->
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="button" id="prev-btn" class="btn btn-secondary" disabled>Anterior</button>
+                <button type="button" id="next-btn" class="btn btn-secondary">Siguiente</button>
+                <button type="submit" id="submit-btn" class="btn btn-primary" style="display: none;">Finalizar</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Iconos flotantes -->
+    <!-- Ícono de WhatsApp flotante -->
+    <a href="https://wa.me/573229608830" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 footer-section">
+        <div class="container">
+            <p><i class="fas fa-solid fa-code"></i> con ❤️ por Jesús David Silva Rangel.<br> &copy; 2024 - Todos los derechos reservados.</p>
+            <div>
+                <a href="https://github.com/Jesus-David-Silva-Rangel-19" class="text-white mr-3" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+                <a href="https://www.linkedin.com/in/jes%C3%BAs-david-silva-rangel-77706a260/" class="text-white mr-3" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+                <a href="mailto:jdsr.cuentapersonal@gmail.com" class="text-white mr-3"><i class="fas fa-envelope fa-2x"></i></a>
+                <a href="tel:+573229608830" class="text-white"><i class="fas fa-phone fa-2x"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts necesarios -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Popper.js (necesario para Bootstrap 4) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <!-- Script personalizado -->
+    <script>
+       const questions = [
+            { text: "Me resulta fácil entablar una conversación con los demás. 😊", positive: false },
+            { text: "Me parece más fácil hacer las cosas siempre de la misma manera. 🔄", positive: true },
+            { text: "Si intento imaginar algo, me resulta muy fácil crearlo en mi mente. 💭", positive: false },
+            { text: "A menudo me siento tan fascinado por algo que pierdo de vista otras cosas. 🤔", positive: true },
+            { text: "A menudo noto pequeños sonidos que otros no perciben. 🎧", positive: true },
+            { text: "Por lo general, entiendo lo que siente otra persona al mirarla a los ojos. 👀", positive: false },
+            { text: "Me resulta fácil reconocer si alguien no está prestando atención en una conversación. 🗣️", positive: false },
+            { text: "Cuando leo algo, me interesa más intentar entender el significado que fijarme en los detalles. 📖", positive: false },
+            { text: "Me resulta fácil hacer más de una cosa a la vez. 🎯", positive: false },
+            { text: "Soy fascinado/a por los números o patrones de datos. 🔢", positive: true },
+            { text: "Normalmente no noto pequeños cambios en una situación o en la apariencia de una persona. 👓", positive: true },
+            { text: "Sé cómo mantener una conversación interesante con otras personas. 💬", positive: false },
+            { text: "Me resulta fácil \"leer entre líneas\" cuando alguien dice algo. 📚", positive: false },
+            { text: "En las reuniones sociales, me resulta fácil seguir las conversaciones con varias personas. 👫", positive: false },
+            { text: "Me resulta difícil hacer frente a cambios en mis planes. 📅", positive: true },
+            { text: "Normalmente me concentro en todo lo que hago hasta que lo termino. ✅", positive: true },
+            { text: "Me resulta difícil entender las perspectivas de los demás. 👥", positive: true },
+            { text: "Puedo hacer amigos con bastante facilidad. 🤗", positive: false },
+            { text: "Me siento fascinado/a con las fechas. 🗓️", positive: true },
+            { text: "Encuentro divertido crear historias o imaginar situaciones. ✍️", positive: false },
+            { text: "Me resulta difícil resolver problemas de grupo cuando las emociones de los demás son importantes. 🤝", positive: true },
+            { text: "A menudo noto detalles que otros pasan por alto. 🔍", positive: true },
+            { text: "Me resulta difícil interpretar las intenciones de los demás. 🤨", positive: true },
+            { text: "Me interesa coleccionar cosas. 🧸", positive: true },
+            { text: "Prefiero hacer las cosas solo/a antes que con otras personas. 🚶", positive: true },
+            { text: "Me resulta más fácil encontrar un patrón que entender la conversación. 📊", positive: true },
+            { text: "Me cuesta saber cómo actuar en situaciones sociales desconocidas. 😓", positive: true },
+            { text: "Me resulta fácil explicar por qué me siento de cierta manera. 😊", positive: false },
+            { text: "Encuentro útil planificar las actividades con antelación. 📝", positive: true },
+            { text: "Si alguien me interrumpe mientras estoy haciendo algo, me resulta fácil volver a concentrarme. 🧘", positive: false },
+            { text: "Prefiero hacer cosas de forma estructurada antes que improvisada. 🗂️", positive: true },
+            { text: "A menudo me resulta fácil imaginar cómo serían diferentes situaciones en la vida. 🌈", positive: false },
+            { text: "Disfruto en reuniones sociales, incluso si no conozco a muchas personas. 🎉", positive: false },
+            { text: "Me resulta difícil captar los dobles sentidos en las conversaciones. 🤔", positive: true },
+            { text: "Prefiero escuchar música o ver televisión en vez de salir a socializar. 🎧", positive: true },
+            { text: "Me fijo mucho en los pequeños detalles. 🔎", positive: true },
+            { text: "Puedo entender los sentimientos de los demás al mirar su rostro. 😊", positive: false },
+            { text: "Prefiero tareas que sigan un procedimiento establecido. 📋", positive: true },
+            { text: "Puedo disfrutar mucho de eventos sociales, incluso en situaciones desconocidas. 🎊", positive: false },
+            { text: "Me cuesta cambiar de un tema a otro en una conversación. 🔄", positive: true },
+            { text: "Me interesan los patrones y las estructuras matemáticas. ➗", positive: true },
+            { text: "Puedo adaptarme fácilmente a los cambios inesperados en mis planes. 🔄", positive: false },
+            { text: "Me fascinan los sistemas mecánicos o tecnológicos. ⚙️", positive: true },
+            { text: "Prefiero hablar sobre hechos y datos en lugar de emociones o relaciones personales. 💾", positive: true },
+            { text: "Me resulta difícil saber si estoy molestando a alguien sin que me lo digan directamente. 😕", positive: true },
+            { text: "Disfruto participando en juegos imaginativos o creativos. 🎨", positive: false },
+            { text: "Me interesa saber las razones detrás de las normas sociales y culturales. 🌐", positive: true },
+            { text: "A menudo me preocupo más por los hechos objetivos que por las emociones. 📊", positive: true },
+            { text: "Prefiero estar en lugares tranquilos en lugar de ruidosos o concurridos. 🏞️", positive: true },
+            { text: "Me cuesta reconocer cuando alguien está siendo sarcástico. 🤨", positive: true }
+        ];
+
+        let currentStep = 0;
+const questionsPerPage = 50;
+const totalSteps = Math.ceil(questions.length / questionsPerPage);
+
+// Objeto global para almacenar respuestas del usuario
+let userResponses = {};
+
+const quizForm = document.getElementById('quiz-form');
+const questionContainer = document.getElementById('question-container');
+const progressBar = document.getElementById('progress-bar');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const submitBtn = document.getElementById('submit-btn');
+
+function showStep(step) {
+    // Actualizar la barra de progreso
+    const progress = ((step) / (totalSteps - 1)) * 100;
+    progressBar.style.width = progress + '%';
+    progressBar.innerText = `${Math.round(progress)}%`;
+
+    // Mostrar u ocultar botones
+    prevBtn.disabled = step === 0;
+    nextBtn.style.display = step === totalSteps - 1 ? 'none' : 'inline-block';
+    submitBtn.style.display = step === totalSteps - 1 ? 'inline-block' : 'none';
+
+    // Mostrar las preguntas del paso actual
+    questionContainer.innerHTML = '';
+    const start = step * questionsPerPage;
+    const end = start + questionsPerPage;
+    for (let i = start; i < end && i < questions.length; i++) {
+        const q = questions[i];
+        const questionDiv = document.createElement('div');
+        questionDiv.classList.add('col-md-6');
+        questionDiv.innerHTML = `
+            <div class="card question-card">
+                <div class="card-body">
+                    <p><strong>${i + 1}. ${q.text}</strong></p>
+                    <div class="options-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="question${i}" id="agree${i}" value="agree" required ${userResponses[`question${i}`] === 'agree' ? 'checked' : ''}>
+                            <label class="form-check-label" for="agree${i}">De acuerdo</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="question${i}" id="disagree${i}" value="disagree" ${userResponses[`question${i}`] === 'disagree' ? 'checked' : ''}>
+                            <label class="form-check-label" for="disagree${i}">En desacuerdo</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        questionContainer.appendChild(questionDiv);
+    }
+}
+
+function saveCurrentPageResponses() {
+    // Guardar las respuestas de la página actual
+    const formData = new FormData(quizForm);
+    for (let i = currentStep * questionsPerPage; i < (currentStep + 1) * questionsPerPage && i < questions.length; i++) {
+        const response = formData.get(`question${i}`);
+        if (response) {
+            userResponses[`question${i}`] = response;
+        }
+    }
+}
+
+nextBtn.addEventListener('click', () => {
+    if (validateStep()) {
+        saveCurrentPageResponses();
+        currentStep++;
+        showStep(currentStep);
+    } else {
+        Swal.fire({
+            icon: 'warning',
+            title: '¡Atención!',
+            text: 'Por favor, responde todas las preguntas.',
+            confirmButtonText: 'Aceptar'
+        });
+    }
+});
+
+prevBtn.addEventListener('click', () => {
+    saveCurrentPageResponses();
+    currentStep--;
+    showStep(currentStep);
+});
+
+quizForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (validateStep()) {
+        // Guardar respuestas de la última página
+        saveCurrentPageResponses();
+
+        // Calcular el puntaje total
+        let totalScore = 0;
+        for (let i = 0; i < questions.length; i++) {
+            const q = questions[i];
+            const response = userResponses[`question${i}`];
+            if (response) {
+                if ((q.positive && response === 'agree') || (!q.positive && response === 'disagree')) {
+                    totalScore += 1;
+                }
+            }
+        }
+
+        // Interpretación del puntaje
+        let resultText = '';
+        if (totalScore <= 25) {
+            resultText = 'Resultados indican un perfil neurotípico.';
+        } else if (totalScore <= 31) {
+            resultText = 'Resultados sugieren rasgos intermedios asociados al espectro autista.';
+        } else {
+            resultText = 'Resultados indican una alta probabilidad de estar dentro del espectro autista. Se recomienda una consulta profesional para un diagnóstico más preciso.';
+        }
+
+        Swal.fire({
+            title: 'Resultado del Cuestionario',
+            html: `<p>Tu puntuación es: <strong>${totalScore}</strong></p><p>${resultText}</p>`,
+            icon: 'info',
+            confirmButtonText: 'Aceptar'
+        });
+    } else {
+        Swal.fire({
+            icon: 'warning',
+            title: '¡Atención!',
+            text: 'Por favor, responde todas las preguntas.',
+            confirmButtonText: 'Aceptar'
+        });
+    }
+});
+
+function validateStep() {
+    const inputs = document.querySelectorAll(`#question-container input[type="radio"]:checked`);
+    const selectedCount = inputs.length;
+    const totalQuestionsInStep = Math.min(questionsPerPage, questions.length - (currentStep * questionsPerPage));
+    return selectedCount === totalQuestionsInStep;
+}
+
+showStep(currentStep);
+
+
+
+    // Agregar las respuestas para un paciente con autismo
+    const patientAnswers = [
+        'disagree', 'agree', 'disagree', 'agree', 'agree',
+        'disagree', 'disagree', 'disagree', 'disagree', 'agree',
+        'agree', 'disagree', 'disagree', 'disagree', 'agree',
+        'agree', 'disagree', 'agree', 'disagree', 'disagree',
+        'agree', 'agree', 'agree', 'agree', 'agree',
+        'agree', 'disagree', 'agree', 'disagree', 'disagree',
+        'agree', 'disagree', 'disagree', 'agree', 'agree',
+        'disagree', 'agree', 'disagree', 'disagree', 'agree',
+        'agree', 'disagree', 'agree', 'disagree', 'disagree', 'agree', 'disagree', 'disagree', 'agree', 'agree'
+    ];
+
+    // Simular las respuestas del paciente
+    for (let i = 0; i < questions.length; i++) {
+        const response = patientAnswers[i];
+        const input = document.getElementById(response + i);
+        if (input) {
+            input.checked = true;
+        }
+    }
+
+    // Mostrar el resultado automáticamente
+    quizForm.dispatchEvent(new Event('submit'));
+
+    // Boton para mostrar las respuestas
+    const showAnswersBtn = document.createElement('button');
+    </script>
+    
+</body>
+</html>

@@ -15,6 +15,11 @@
     <!--LottieFiles CDN-->
     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 
+    <!-- Anuncios de Google AdSense -->
+    <script data-ad-client="ca-pub-8698951889098274" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8698951889098274"
+        crossorigin="anonymous"></script>
+
     <!--
     - https://lottiefiles.com/
     -->
@@ -307,6 +312,12 @@
             animation: pulse 2s infinite;
         }
 
+        .fmri-brain img {
+            /* Reducir la altura de la imagen para que coincida con las demás */
+            height: 10px;
+
+        }
+
         /* Animaciones de Keyframes */
         @keyframes rotate {
             0% {
@@ -375,6 +386,21 @@
             top: 50%;
             left: 7%;
             transform: translateY(-50%);
+        }
+
+        /* Anuncios */
+        /* Estilos para la sección de anuncios */
+        .ad-section {
+            margin: 50px 50px 50px 50px;
+            padding: 20px;
+            border: 3px dashed #ccc;
+            background-color: #f9f9f9;
+        }
+
+        .ad-section img {
+            max-width: 100%;
+            height: 100%;
+            /* height: auto; */
         }
 
         /* Diseño responsivo */
@@ -637,7 +663,7 @@
                         <a class="nav-link">|</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../Under_Construction/under_construction.html">Proyectos</a>
+                        <a class="nav-link" href="../content/all-projects.html">Proyectos</a>
                     </li>
                 </ul>
             </div>
@@ -826,8 +852,8 @@
             <div class="col-md-3">
                 <img src="../img/gallery-brain.png" alt="Imagen 1">
             </div>
-            <div class="col-md-3">
-                <img src="../img/gallery-fmri.png" alt="Imagen 2">
+            <div class="col-md-3 fmri-brain">
+                <img src="../img/gallery-fmri.png" alt="Imagen 2" style="height: 165px; object-fit: cover;">
             </div>
             <div class="col-md-3">
                 <!--Video que se reproduce automáticamente y en bucle-->
@@ -852,6 +878,21 @@
     </div>
 </section>
 
+
+    <div class="ad-section">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8698951889098274"
+        crossorigin="anonymous"></script>
+        <ins class="adsbygoogle"
+            style="display:block; text-align:center;"
+            data-ad-layout="in-article"
+            data-ad-format="fluid"
+            data-ad-client="ca-pub-8698951889098274"
+            data-ad-slot="9864435272">
+        </ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    </div>
 
     <!-- Sección de contacto -->
     <section class="contact-section py-5 section-background">
@@ -932,7 +973,6 @@
             </p>
         </div>
     </footer>
-
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <!-- Bootstrap JS -->
@@ -987,6 +1027,10 @@
         window.addEventListener('resize', checkVisibility);
         checkVisibility(); // Initial check
     });
+
+    // Anuncios de Google AdSense
+    (adsbygoogle = window.adsbygoogle || []).push({});
+
     </script>
 </body>
 </html>

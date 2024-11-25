@@ -24,6 +24,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
      
     <link rel="stylesheet" href="styles.css">
+
 </head>
 
 <style>
@@ -118,7 +119,7 @@
     .ad-section {
         margin: 40px 0;
         padding: 20px;
-        border: 2px dashed #ccc;
+        border: 4px dashed #ccc;
         background-color: #f9f9f9;
     }
 
@@ -274,44 +275,65 @@
 
 
         <div class="ad-section">
-            <!-- Anuncio de Google AdSense -->
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!-- Nombre del bloque de anuncios -->
+            
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8698951889098274"
+            crossorigin="anonymous"></script>
+            <!-- Café -->
             <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="tu-código-de-cliente"
-                 data-ad-slot="tu-código-de-slot"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
+            style="display:block"
+            data-ad-client="ca-pub-8698951889098274"
+            data-ad-slot="5151697470"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
             <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
+                (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div>
 
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8698951889098274"
-        crossorigin="anonymous"></script>
-       <!-- Café -->
-       <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-8698951889098274"
-           data-ad-slot="5151697470"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-       <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-       </script>
+        <div class="col-md-6 col-lg-4 project-item mb-4" data-category="categoria1">
+            <div class="card h-100">
+                <img src="../img/all-projects/portada-toc.png" class="card-img-top" alt="Proyecto 3">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-justify">Cuestionario de Coeficiente de Espectro Autista (AQ)</h5>
+                    <!--Descripcion que es?-->
+                    <p class="card-text">Cuestionario de autoevaluación para evaluar el espectro autista en adultos a partir del Cuestionario de Coeficiente de Espectro Autista (AQ).</p>
+                    <p class="card-text">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="../content/diagnostic/Autism-AQ.html" class="btn btn-primary">Ver Proyecto</a>
+                        <!-- Símbolo de favoritos -->
+                        <button class="btn btn-outline-danger favorite-btn">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <!-- Sistema de valoración -->
+                    <div class="mt-2">
+                        <span class="rating">
+                            <i class="far fa-star" data-rating="1"></i>
+                            <i class="far fa-star" data-rating="2"></i>
+                            <i class="far fa-star" data-rating="3"></i>
+                            <i class="far fa-star" data-rating="4"></i>
+                            <i class="far fa-star" data-rating="5"></i>
+                        </span>
+                    </div>
+                    <!-- Botones para compartir y reportar -->
+                    <div class="mt-2">
+                        <a href="#" class="text-secondary mr-3 share-btn"><i class="fas fa-share-alt"></i> Compartir</a>
+                        <a href="#" class="text-danger report-btn"><i class="fas fa-flag"></i> Reportar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 
-        <!-- Paginación -->
-        <nav>
-            <ul class="pagination justify-content-center">
-                <li class="page-item disabled"><a href="#" class="page-link">Anterior</a></li>
-                <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                <!-- Agrega más páginas según sea necesario -->
-                <li class="page-item"><a href="#" class="page-link">Siguiente</a></li>
-            </ul>
-        </nav>
-    </main>
-
+    <nav>
+        <ul class="pagination justify-content-center">
+            <li class="page-item disabled"><a href="#" class="page-link">Anterior</a></li>
+            <li class="page-item active"><a href="#" class="page-link">1</a></li>
+            <!-- Agrega más páginas según sea necesario -->
+            <li class="page-item"><a href="#" class="page-link">Siguiente</a></li>
+        </ul>
+    </nav>
 
     <!-- Pie de página -->
     <footer class="footer-section bg-dark text-white py-4">
@@ -509,8 +531,6 @@
                 timerProgressBar: true
             });
         });
-
-        
 
         // Paginación (ejemplo simple)
         // Aquí puedes implementar la lógica de paginación
