@@ -318,6 +318,12 @@
 
         }
 
+        .card-body {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+            border: 3px solid #007bff;
+            border-radius: 20px;
+        }
+
         /* Animaciones de Keyframes */
         @keyframes rotate {
             0% {
@@ -401,6 +407,28 @@
             max-width: 100%;
             height: 100%;
             /* height: auto; */
+        }
+
+        /* Mostrar animaciones para la vista de computadora */
+        @media (min-width: 1200px) {
+            .lottie-animation-right {
+                display: block;
+            }
+
+            .lottie-animation-left {
+                display: block;
+            }
+        }
+
+        /* Ocultar animaciones para la vista de tableta y teléfono */
+        @media (max-width: 1199px) {
+            .lottie-animation-right {
+                display: none;
+            }
+
+            .lottie-animation-left {
+                display: none;
+            }
         }
 
         /* Diseño responsivo */
@@ -507,14 +535,6 @@
                 }
             }
 
-            /* Animación de LottieFiles oculta */
-            .lottie-animation-right {
-                display: none;
-            }
-
-            .lottie-animation-left dotlottie-player {
-                display: none;
-            }
 
             /* Tablet */
             @media (min-width: 600px) and (max-width: 899px) {

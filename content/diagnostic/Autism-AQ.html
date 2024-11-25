@@ -45,10 +45,20 @@ LISTA DE VERIFICACIÓN
         /* Estilos de las preguntas */
         .question-card {
             margin-bottom: 20px;
+            border: 2px solid #e9ecef;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+
+            /* Hacer que las card sean del mismo tamaño */
+            height: 90%;
+
         }
         .progress {
             height: 25px;
             margin-bottom: 30px;
+            font-size: 1.1em;
+            border: 2px solid #28a745;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
         }
         .btn-group-toggle .btn {
             width: 100%;
@@ -56,6 +66,8 @@ LISTA DE VERIFICACIÓN
         /* Estilos de la barra de progreso */
         .progress-bar {
             background-color: #28a745;
+            border: 2px solid #28a745;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
         }
         /* Estilos para los emojis */
         .emoji {
@@ -65,13 +77,141 @@ LISTA DE VERIFICACIÓN
         .options-group label {
             width: 100%;
         }
+
+        /* Botones */
+        .prev-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+        
+        .next-btn {
+            background-color: #007bff;
+            color: white;
+            border: 2px solid #007bff;
+            font-variant: small-caps;
+            font-weight: bold !important;
+            border-radius: 10px !important;
+        }
+
+        .prev-btn {
+            background-color: red !important;
+            border: 2px solid red !important;
+            font-variant: small-caps !important;
+            font-weight: bold !important;
+            border-radius: 10px !important;
+        }
+
+        /* Estilos responsivos para móviles */
+        @media (max-width: 768px) {
+            .custom-container {
+                padding: 0 15px;
+            }
+            .question-card {
+                margin-bottom: 15px;
+            }
+            .progress {
+                height: 20px;
+                margin-bottom: 20px;
+            }
+            .btn-group-toggle .btn {
+                width: 100%;
+                font-size: 0.9em;
+            }
+            .prev-btn, .next-btn, .submit-btn {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            .navbar-nav {
+                text-align: center;
+            }
+            .navbar-nav .nav-item {
+                margin-bottom: 10px;
+            }
+            .navbar-brand {
+                font-size: 1.5em;
+            }
+            .navbar-toggler {
+                margin-bottom: 10px;
+            }
+            .footer-section {
+                padding: 20px 0;
+            }
+            .footer-section p {
+                font-size: 0.9em;
+            }
+            .footer-section .fa-2x {
+                font-size: 1.5em;
+            }
+        }
+
+        /* Celular pequeño */
+        @media (min-width: 400px) and (max-width: 580px) {
+            .custom-container {
+                padding: 0 10px;
+            }
+            .question-card {
+                margin-bottom: 10px;
+            }
+            .progress {
+                height: 15px;
+                margin-bottom: 15px;
+            }
+            .btn-group-toggle .btn {
+                width: 100%;
+                font-size: 0.8em;
+            }
+            .prev-btn, .next-btn, .submit-btn {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+            .navbar-nav .nav-item {
+                margin-bottom: 5px;
+            }
+            .navbar-brand {
+                font-size: 1.2em;
+            }
+            .footer-section p {
+                font-size: 0.8em;
+            }
+            .footer-section .fa-2x {
+                font-size: 1.2em;
+            }
+        }
+
     </style>
 </head>
 <body>
 
+   <!-- Barra de navegación -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">Inicio</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../../index.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../home.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../projects/project.html">Proyecto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../contact.html">Contacto</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+    
     <!-- Encabezado -->
-    <header class="bg-primary text-white text-center py-4">
-        <h1>🧩 Cuestionario AQ</h1>
+    <header class="bg-primary text-white text-center py-4" id="main-container">
+        <h1>🧩 Cuestionario de Coeficiente de Espectro Austista (AQ) 🧠</h1>
         <p>¡Evalúa tus rasgos del espectro autista!</p>
     </header>
 
@@ -88,9 +228,9 @@ LISTA DE VERIFICACIÓN
                 <!-- Las preguntas se cargarán aquí dinámicamente -->
             </div>
             <div class="d-flex justify-content-between">
-                <button type="button" id="prev-btn" class="btn btn-secondary" disabled>Anterior</button>
-                <button type="button" id="next-btn" class="btn btn-secondary">Siguiente</button>
-                <button type="submit" id="submit-btn" class="btn btn-primary" style="display: none;">Finalizar</button>
+                <button type="button" id="prev-btn" class="btn btn-secondary prev-btn" disabled>Anterior</button>
+                <button type="button" id="next-btn" class="btn btn-secondary next-btn">Siguiente</button>
+                <button type="submit" id="submit-btn" class="btn btn-primary submit-btn" style="display: none;">Finalizar</button>
             </div>
         </form>
     </div>
@@ -179,8 +319,8 @@ LISTA DE VERIFICACIÓN
         ];
 
         let currentStep = 0;
-const questionsPerPage = 50;
-const totalSteps = Math.ceil(questions.length / questionsPerPage);
+        const questionsPerPage = 50;
+        const totalSteps = Math.ceil(questions.length / questionsPerPage);
 
 // Objeto global para almacenar respuestas del usuario
 let userResponses = {};
@@ -232,22 +372,14 @@ function showStep(step) {
     }
 }
 
-function saveCurrentPageResponses() {
-    // Guardar las respuestas de la página actual
-    const formData = new FormData(quizForm);
-    for (let i = currentStep * questionsPerPage; i < (currentStep + 1) * questionsPerPage && i < questions.length; i++) {
-        const response = formData.get(`question${i}`);
-        if (response) {
-            userResponses[`question${i}`] = response;
-        }
-    }
-}
 
 nextBtn.addEventListener('click', () => {
     if (validateStep()) {
         saveCurrentPageResponses();
         currentStep++;
         showStep(currentStep);
+        document.getElementById('main-container').scrollIntoView({ behavior: 'smooth' }); // Desplazar hacia arriba
+
     } else {
         Swal.fire({
             icon: 'warning',
@@ -262,12 +394,13 @@ prevBtn.addEventListener('click', () => {
     saveCurrentPageResponses();
     currentStep--;
     showStep(currentStep);
+    document.getElementById('main-container').scrollIntoView({ behavior: 'smooth' }); // Desplazar hacia arriba
+
 });
 
 quizForm.addEventListener('submit', (e) => {
     e.preventDefault();
     if (validateStep()) {
-        // Guardar respuestas de la última página
         saveCurrentPageResponses();
 
         // Calcular el puntaje total
@@ -292,6 +425,7 @@ quizForm.addEventListener('submit', (e) => {
             resultText = 'Resultados indican una alta probabilidad de estar dentro del espectro autista. Se recomienda una consulta profesional para un diagnóstico más preciso.';
         }
 
+
         Swal.fire({
             title: 'Resultado del Cuestionario',
             html: `<p>Tu puntuación es: <strong>${totalScore}</strong></p><p>${resultText}</p>`,
@@ -315,37 +449,47 @@ function validateStep() {
     return selectedCount === totalQuestionsInStep;
 }
 
+function saveCurrentPageResponses() {
+    const formData = new FormData(quizForm);
+    for (let i = currentStep * questionsPerPage; i < (currentStep + 1) * questionsPerPage && i < questions.length; i++) {
+        const response = formData.get(`question${i}`);
+        if (response) {
+            userResponses[`question${i}`] = response;
+        }
+    }
+}
+
 showStep(currentStep);
 
 
 
-    // Agregar las respuestas para un paciente con autismo
-    const patientAnswers = [
-        'disagree', 'agree', 'disagree', 'agree', 'agree',
-        'disagree', 'disagree', 'disagree', 'disagree', 'agree',
-        'agree', 'disagree', 'disagree', 'disagree', 'agree',
-        'agree', 'disagree', 'agree', 'disagree', 'disagree',
-        'agree', 'agree', 'agree', 'agree', 'agree',
-        'agree', 'disagree', 'agree', 'disagree', 'disagree',
-        'agree', 'disagree', 'disagree', 'agree', 'agree',
-        'disagree', 'agree', 'disagree', 'disagree', 'agree',
-        'agree', 'disagree', 'agree', 'disagree', 'disagree', 'agree', 'disagree', 'disagree', 'agree', 'agree'
-    ];
+        /* // Agregar las respuestas para un paciente con autismo
+        const patientAnswers = [
+            'disagree', 'agree', 'disagree', 'agree', 'agree',
+            'disagree', 'disagree', 'disagree', 'disagree', 'agree',
+            'agree', 'disagree', 'disagree', 'disagree', 'agree',
+            'agree', 'disagree', 'agree', 'disagree', 'disagree',
+            'agree', 'agree', 'agree', 'agree', 'agree',
+            'agree', 'disagree', 'agree', 'disagree', 'disagree',
+            'agree', 'disagree', 'disagree', 'agree', 'agree',
+            'disagree', 'agree', 'disagree', 'disagree', 'agree',
+            'agree', 'disagree', 'agree', 'disagree', 'disagree', 'agree', 'disagree', 'disagree', 'agree', 'agree'
+        ];
 
-    // Simular las respuestas del paciente
-    for (let i = 0; i < questions.length; i++) {
-        const response = patientAnswers[i];
-        const input = document.getElementById(response + i);
-        if (input) {
-            input.checked = true;
+        // Simular las respuestas del paciente
+        for (let i = 0; i < questions.length; i++) {
+            const response = patientAnswers[i];
+            const input = document.getElementById(response + i);
+            if (input) {
+                input.checked = true;
+            }
         }
-    }
 
-    // Mostrar el resultado automáticamente
-    quizForm.dispatchEvent(new Event('submit'));
+        // Mostrar el resultado automáticamente
+        quizForm.dispatchEvent(new Event('submit'));
 
-    // Boton para mostrar las respuestas
-    const showAnswersBtn = document.createElement('button');
+        // Boton para mostrar las respuestas
+        const showAnswersBtn = document.createElement('button'); */
     </script>
     
 </body>
