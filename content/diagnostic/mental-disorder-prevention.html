@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cuestionario de Evaluación de Riesgo de Enfermedad Mental</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Incluir Font Awesome desde CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="../styles.css">
+    <!-- FontAwesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+    <!-- FontAwesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+     <!-- Estilos personalizados -->
+     <link rel="stylesheet" href="../styles.css">
+
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
+
+        @import url('https://fonts.googleapis.com/css2?family=Antic+Slab&family=Belgrano&family=IM+Fell+DW+Pica:ital@0;1&family=Pridi:wght@200;300;400;500;600;700&family=Wellfleet&display=swap');
+
+        @import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
+
+        @import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap');
+
+
+        body {
+            background-color: #eef2f3;
+            font-family: 'Young Serif', serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Patua One', sans-serif;
+            font-variant: small-caps;
+            font-weight: bolder;
+        }
+
+        .container-question {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        
+
+        .section {
+            margin-bottom: 25px;
+        }
+        .section h2 {
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 5px;
+            color: #4CAF50;
+        }
+        .question {
+            margin: 15px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius:5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background: #45a049;
+        }
+        /* Footer */
+        .footer-section {
+            border-top: 5px solid rgb(0, 0, 0); /* Borde superior */
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border: 4px solid #007bff;
+            
+            /* Separar del formulario superior */
+            margin-top: 30px;
+
+        }
+
+        /* Iconos flotantes */
+        .social-icons {
+            position: fixed;
+            top: 70%;
+            right: 115;
+            left: 115;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            background: white;
+            border-radius: 10px 10px 10px 10px;
+            padding: 10px;
+            box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.7);
+            /* Animación */
+            transition: background 0.3s;
+            /* Crear el panel solo a la izquierda */
+            z-index: 1000;
+            border-width: 40px;
+            border-color: white;
+        }
+        .social-icon {
+            color: #fff;
+            text-align: center;
+            margin: 5px 0;
+            font-size: 24px;
+            transition: background 0.3s, color 0.3s;
+            border-radius: 10px;
+            border-color: #ffffff;
+            border-width: 10px;
+        }
+        .social-icon:hover {
+            background: #495057;
+            color: #fff;
+            border-radius: 10px;
+        }
+
+        .whatsapp-float {
+            box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Ícono de WhatsApp flotante */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 1000;
+    transition: background-color 0.3s;
+    box-shadow: 0 0 15px rgba(0,0,0,0.6);
+}
+
+.whatsapp-float:hover {
+    background-color: #20b358;
+    color: #fff;
+    text-decoration: none;
+}
+
+.whatsapp-float i {
+    margin-top: 16px;
+}
+
+
+/* Íconos flotantes */
+.social-icons {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.social-icon {
+    width: 50px;
+    height: 50px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.social-icon:hover {
+    background-color: #555;
+}
+
+.social-icon i {
+    font-size: 24px;
+}
+
+/* Estilos del Scroll */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.container, .form-group {
+    border-color: #007bff;
+}
+
+/* Evitar que el formulario se junte con el footer */
+footer {
+    margin-top: 35px;
+}
+
+/* Formulario */
+form {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0.1px 0px 4px 6px rgba(0.1, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        /* Etiquetas */
+        form label {
+            font-weight: bold;
+            color: #333333;
+        }
+
+/* Contenedor principal */
+.custom-container {
+            max-width: 800px;
+            box-shadow: 0.4px 0.4px 4px 4px rgba(0.4, 0.5, 0.5, 0.6);
+            border-radius: 10px;
+            /* Separar la seccion del footer */
+            margin-bottom: 50px;
+        }
+
+        .social-media {
+            text-align: center;
+            padding: 20px 0;
+        }
+        .social-media h2 {
+            margin-bottom: 20px;
+        }
+        .social-media a {
+            color: #007bff;
+            margin: 0 15px;
+            font-size: 2.5rem;
+            transition: color 0.3s;
+        }
+        .social-media a:hover {
+            color: #0056b3;
+        }
+
+        .fa-whatsapp-square {
+            color: #25d366;
+        }
+
+        .fa-github-square {
+            color: #333;
+        }
+
+        .fa-linkedin-square {
+            color: #0a66c2;
+        }
+        
+        .fa-skype-square {
+            color: #00aff0;
+        }
+
+        .map-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.8);
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .social-media h2 {
+            font-family: 'Carter One', cursive;
+        }
+        
+        .header-bordeado{
+            border: 2px solid #007bff;
+            padding: 10px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: 6px 6px 6px 6px rgba(0, 0, 0, 0.7);
+            width: 100%;
+            margin: auto;
+            
+        }
+
+        /* Volver simétrico el formulario y sus elementos */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            margin-bottom: 0.5rem;
+        }
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+        .form-control:focus {
+            color: #495057;
+            background-color: #fff;
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+        .form-control::-ms-expand {
+            background-color: transparent;
+            border: 0;
+        }
+        .form-control:-moz-focusring {
+            color: transparent;
+            text-shadow: 0 0 0 #495057;
+        }
+        .form-control::placeholder {
+            color: #6c757d;
+            opacity: 1;
+        }
+        .form-control:disabled, .form-control[readonly] {
+            background-color: #e9ecef;
+            opacity: 1;
+        }
+        .form-control {
+            height: calc(1.5em + 1rem + 2px);
+        }
+     
+    </style>
+</head>
+<body>
+
+    <header class="bg-dark text-white text-center py-2 header-bordeado">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container text-center">
+                <h1 class="navbar-brand" style="font-size: 30px; text-align: center;">Proyecto SERA-24</h1>
+            </div>
+
+            <!-- Botón de menú -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Menú de navegación -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../content/home.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">|</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="diagnostico.html">Diagnóstico</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">|</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="acerca.html">Información</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">|</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">|</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../all-projects.html">Proyectos</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container container-question custom-container mt-5 p-4">
+        <h1 class="text-center mb-4 text-primary">🧠 Cuestionario de Evaluación de Riesgo de Enfermedad Mental 🧩</h1>
+        <form id="mentalHealthForm" class="shadow-lg p-4 rounded bg-light">
+            <!-- Sección 1: Estado de Ánimo -->
+            <div class="col-12 mb-3">
+                <h5 class="text-secondary"><i class="fas fa-smile"></i> Estado de Ánimo</h5>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="q1">1. ¿Con qué frecuencia te sientes triste o deprimido? 😔</label>
+                    <select class="form-control" id="q1" name="q1">
+                        <option value="0">Nunca</option>
+                        <option value="1">Rara vez</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Frecuentemente</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="q2">2. ¿Te sientes sin esperanza sobre el futuro? 🌧️</label>
+                    <select class="form-control" id="q2" name="q2">
+                        <option value="0">Nunca</option>
+                        <option value="1">Rara vez</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Frecuentemente</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="q3">3. ¿Pierdes interés o placer en actividades que antes disfrutabas? 🎭</label>
+                    <select class="form-control" id="q3" name="q3">
+                        <option value="0">Nunca</option>
+                        <option value="1">Rara vez</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Frecuentemente</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="q4">4. ¿Te sientes inútil o sin valor? 🥀</label>
+                    <select class="form-control" id="q4" name="q4">
+                        <option value="0">Nunca</option>
+                        <option value="1">Rara vez</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Frecuentemente</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+            </div>
+    
+            <!-- Sección 2: Sueño -->
+            <div class="col-12 mb-3">
+                <h5 class="text-secondary"><i class="fas fa-bed"></i> Sueño</h5>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="q5">5. ¿Tienes dificultades para conciliar el sueño? 🛌</label>
+                    <select class="form-control" id="q5" name="q5">
+                        <option value="0">Nunca</option>
+                        <option value="1">Rara vez</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Frecuentemente</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="q6">6. ¿Te despiertas durante la noche y tienes dificultades para volver a dormir? 🌙</label>
+                    <select class="form-control" id="q6" name="q6">
+                        <option value="0">Nunca</option>
+                        <option value="1">Rara vez</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Frecuentemente</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="q7">7. ¿Duermes más de lo habitual o sientes cansancio extremo? 😴</label>
+                    <select class="form-control" id="q7" name="q7">
+                        <option value="0">Nunca</option>
+                        <option value="1">Rara vez</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Frecuentemente</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="q8">8. ¿Tienes pesadillas recurrentes que te perturban? 🪐</label>
+                    <select class="form-control" id="q8" name="q8">
+                        <option value="0">Nunca</option>
+                        <option value="1">Rara vez</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Frecuentemente</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+            </div>
+    
+            <!-- Sección 3: Estrés -->
+            <div class="col-12 mb-3">
+                <h5 class="text-secondary"><i class="fas fa-heartbeat"></i> Estrés</h5>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="q13">9. ¿Sientes que estás constantemente bajo presión? 🧨</label>
+                    <select class="form-control" id="q13" name="q13">
+                        <option value="0">Nunca</option>
+                        <option value="1">Rara vez</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Frecuentemente</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="q14">10. ¿Te sientes abrumado al enfrentar problemas inesperados? 🌊</label>
+                    <select class="form-control" id="q14" name="q14">
+                        <option value="0">Nunca</option>
+                        <option value="1">Rara vez</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Frecuentemente</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="q15">11. ¿Encuentras difícil relajarte después de un día ocupado? 🛋️</label>
+                    <select class="form-control" id="q15" name="q15">
+                        <option value="0">Nunca</option>
+                        <option value="1">Rara vez</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Frecuentemente</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="q16">12. ¿Te encuentras irritado o molesto fácilmente? ⚡</label>
+                    <select class="form-control" id="q16" name="q16">
+                        <option value="0">Nunca</option>
+                        <option value="1">Rara vez</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Frecuentemente</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+            </div>
+    
+            <!-- Sección 4: Relaciones Sociales -->
+            <div class="col-12 mb-3">
+                <h5 class="text-secondary"><i class="fas fa-users"></i> Relaciones Sociales</h5>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="q17">13. ¿Te sientes desconectado de tus amigos o familiares? 🤝</label>
+                    <select class="form-control" id="q17" name="q17">
+                        <option value="0">Nunca</option>
+                        <option value="1">Rara vez</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Frecuentemente</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="q18">14. ¿Sientes que te cuesta expresar tus emociones a otros? 🗨️</label>
+                    <select class="form-control" id="q18" name="q18">
+                        <option value="0">Nunca</option>
+                        <option value="1">Rara vez</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Frecuentemente</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="q19">15. ¿Te sientes solo incluso cuando estás acompañado? 🥀</label>
+                    <select class="form-control" id="q19" name="q19">
+                        <option value="0">Nunca</option>
+                        <option value="1">Rara vez</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Frecuentemente</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="q20">16. ¿Evitas eventos sociales debido a ansiedad o incomodidad? 🎭</label>
+                    <select class="form-control" id="q20" name="q20">
+                        <option value="0">Nunca</option>
+                        <option value="1">Rara vez</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Frecuentemente</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+            </div>
+    
+            <!-- Sección 5: Hábitos y Estilo de Vida -->
+            <div class="col-12 mb-3">
+                <h5 class="text-secondary"><i class="fas fa-utensils"></i> Hábitos y Estilo de Vida</h5>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="q21">17. ¿Consumes sustancias (alcohol, tabaco u otras) para manejar tus emociones? 🍷</label>
+                    <select class="form-control" id="q21" name="q21">
+                        <option value="0">Nunca</option>
+                        <option value="1">Rara vez</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Frecuentemente</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="q22">18. ¿Tienes episodios de comer en exceso o perder el apetito debido al estrés? 🍔</label>
+                    <select class="form-control" id="q22" name="q22">
+                        <option value="0">Nunca</option>
+                        <option value="1">Rara vez</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Frecuentemente</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="q23">19. ¿Haces ejercicio con regularidad para liberar tensiones o mejorar tu estado de ánimo? 🏋️</label>
+                    <select class="form-control" id="q23" name="q23">
+                        <option value="0">Nunca</option>
+                        <option value="1">Rara vez</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Frecuentemente</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="q24">20. ¿Tienes horarios irregulares o desequilibrio en tus actividades diarias (trabajo, descanso, ocio)? 🕰️</label>
+                    <select class="form-control" id="q24" name="q24">
+                        <option value="0">Nunca</option>
+                        <option value="1">Rara vez</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Frecuentemente</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+            </div>
+    
+            <!-- Sección 6: Factores de Riesgo Familiar -->
+            <div class="col-12 mb-3">
+                <h5 class="text-secondary"><i class="fas fa-home"></i> Factores de Riesgo Familiar</h5>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="q25">21. ¿Tienes antecedentes familiares de enfermedades mentales? 🧬</label>
+                    <select class="form-control" id="q25" name="q25">
+                        <!--Opción de Sí o No-->
+                        <option value="0">No</option>
+                        <option value="4">Sí</option>
+                    </select>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="q26">22. ¿Alguien en tu familia cercana ha sido diagnosticado con ansiedad, depresión u otros trastornos? 🧠</label>
+                    <select class="form-control" id="q26" name="q26">
+                        <!--Opción de Sí o No-->
+                        <option value="0">No</option>
+                        <option value="4">Sí</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="q27">23. ¿Fuiste testigo de situaciones de abuso emocional, físico o negligencia en tu infancia? 🚸</label>
+                    <select class="form-control" id="q27" name="q27">
+                        <!--Opción de Sí o No -->
+                        <option value="0">No</option>
+                        <option value="4">Sí</option>
+                    </select>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="q28">24. ¿Tienes familiares cercanos que sufrieron de adicción a sustancias? 💊</label>
+                    <select class="form-control" id="q28" name="q28">
+                        <!--Opción de Sí o No-->
+                        <option value="0">No</option>
+                        <option value="4">Sí</option>
+                    </select>
+                </div>
+            </div>
+    
+            <!-- Sección Extra: Evaluación General -->
+            <div class="col-12 mb-3">
+                <h5 class="text-secondary"><i class="fas fa-check"></i> Evaluación General</h5>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="q29">25. ¿Te sientes satisfecho con la calidad de tu vida en general? 🌟</label>
+                    <select class="form-control" id="q29" name="q29">
+                        <option value="0">Nunca</option>
+                        <option value="1">Rara vez</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Frecuentemente</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="q30">26. ¿Crees que necesitas ayuda profesional para manejar tus emociones o situaciones actuales? 🆘</label>
+                    <select class="form-control" id="q30" name="q30">
+                        <option value="0">Nunca</option>
+                        <option value="1">Rara vez</option>
+                        <option value="2">A veces</option>
+                        <option value="3">Frecuentemente</option>
+                        <option value="4">Siempre</option>
+                    </select>
+                </div>
+            </div>
+    
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Enviar Respuestas</button>
+            </div>
+        </form>
+    </div>
+
+    <!--Iconos flotantes-->
+    <!-- Ícono de WhatsApp flotante -->
+    <a href="https://wa.me/573229608830" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+     <!-- Íconos flotantes -->
+    <div class="social-icons">
+        <a href="https://github.com/Jesus-David-Silva-Rangel-19" class="social-icon" target="_blank">
+            <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/jes%C3%BAs-david-silva-rangel-77706a260/" class="social-icon" target="_blank">
+            <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="tel:+573229608830" class="social-icon">
+            <i class="fas fa-phone"></i>
+        </a>
+        <a href="mailto:jdsr.cuentapersonal@gmail.com" class="social-icon">
+            <i class="fas fa-envelope"></i>
+        </a>
+    </div>
+
+
+    <!-- Sección de redes sociales -->
+    <div class="container social-media">
+        <h2>Síguenos en nuestras redes sociales</h2>
+        <a href="https://github.com/Jesus-David-Silva-Rangel-19" target="_blank"><i class="fab fa-github-square"></i></a>
+        <a href="https://www.linkedin.com/in/jes%C3%BAs-david-silva-rangel-77706a260/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="skype:live:.cid.d0450c80256883de?call" target="_blank"><i class="fab fa-skype"></i></a>
+        <a href="https://wa.me/573229608830" target="_blank"><i class="fab fa-whatsapp-square"></i></a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 footer-section">
+        <div class="container">
+            <p><i class="fas fa-solid fa-code"></i> Desarrollado con ❤️ por Jesús David Silva Rangel.<br> &copy; 2024 - Todos los derechos reservados.</p>
+            <div>
+                <a href="https://github.com/Jesus-David-Silva-Rangel-19" class="text-white mr-3" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+                <a href="https://www.linkedin.com/in/jes%C3%BAs-david-silva-rangel-77706a260/" class="text-white mr-3" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+                <a href="mailto:jdsr.cuentapersonal@gmail.com" class="text-white mr-3"><i class="fas fa-envelope fa-2x"></i></a>
+                <a href="tel:+573229608830" class="text-white"><i class="fas fa-phone fa-2x"></i></a>
+            </div>
+        </div>
+    </footer>
+    
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- SweetAlert2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+    $(document).ready(function() {
+    // Inicializar tooltips de Bootstrap
+    $('[data-toggle="tooltip"]').tooltip();
+
+    // Manejo del envío del formulario
+    $('#mentalHealthForm').on('submit', function(e) {
+        e.preventDefault();
+
+        // Validar que todas las preguntas hayan sido respondidas
+        let allAnswered = true;
+        $('#mentalHealthForm select').each(function() {
+            if ($(this).val() === '') {
+                allAnswered = false;
+            }
+        });
+
+        if (allAnswered) {
+            // Calcular la puntuación total
+            let totalScore = 0;
+            $('#mentalHealthForm select').each(function() {
+                totalScore += parseInt($(this).val());
+            });
+
+            // Interpretación del puntaje acorde al cuestionario de evaluación de riesgo de enfermedad mental
+            let resultText = '';
+            if (totalScore <= 20) {
+                resultText = 'Resultados indican un bajo riesgo de enfermedad mental.';
+            } else if (totalScore <= 40) {
+                resultText = 'Resultados sugieren un riesgo moderado de enfermedad mental. Se recomienda estar atento a los síntomas y considerar hablar con un profesional.';
+            } else {
+                resultText = 'Resultados indican un alto riesgo de enfermedad mental. Se recomienda encarecidamente buscar ayuda profesional para una evaluación más detallada.';
+            }
+
+            // Mostrar resultado con SweetAlert2
+            Swal.fire({
+                title: 'Resultado del Cuestionario',
+                html: `<p>Tu puntuación es: <strong>${totalScore}</strong></p><p>${resultText}</p>`,
+                icon: 'info',
+                confirmButtonText: 'Aceptar'
+            });
+        } else {
+            // Mostrar alerta de advertencia si no se han respondido todas las preguntas
+            Swal.fire({
+                icon: 'warning',
+                title: '¡Atención!',
+                text: 'Por favor, responde todas las preguntas.',
+                confirmButtonText: 'Aceptar'
+            });
+        }
+    });
+});
+
+    // 
+</script>
+
+</body>
+</html>
