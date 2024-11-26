@@ -20,6 +20,12 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8698951889098274"
         crossorigin="anonymous"></script>
 
+    <!--Boostrap Icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+
     <!--
     - https://lottiefiles.com/
     -->
@@ -27,6 +33,9 @@
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="../styles.css">
 <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap');
+        
         /* Estilos personalizados */
         .bg-dark {
             background-color: #343a40 !important;
@@ -73,7 +82,7 @@
         /* Iconos flotantes */
         .social-icons {
             position: fixed;
-            top: 70%;
+            top: 50%;
             right: 115;
             left: 115;
             transform: translateY(-50%);
@@ -89,7 +98,46 @@
             z-index: 1000;
             border-width: 40px;
             border-color: white;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            padding-top: 0px;
+            padding-bottom: 0px;
         }
+
+        .social-icons a {
+            color: #fff;
+            text-align: center;
+            margin: 0px 0;
+            transition: background 0.3s, color 0.3s;
+            border-radius: 10px;
+            border-color: #ffffff;
+            border-width: 10px;
+            /* Reducir espacio vertical entre iconos */
+            padding: 0px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+
+        .social-icons i {
+            font-size: 40px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+
+        .social-icons a {
+            transition: transform 0.2s ease, color 0.2s ease;
+            text-decoration: none;
+        }
+        .social-icons a:hover {
+            transform: scale(1.2);
+            opacity: 0.8;
+        }
+
+        /*
         .social-icon {
             color: #fff;
             text-align: center;
@@ -105,7 +153,7 @@
             color: #fff;
             border-radius: 10px;
         }
-
+        */
         .whatsapp-float {
             box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.6);
         }
@@ -318,11 +366,7 @@
 
         }
 
-        .card-body {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
-            border: 3px solid #007bff;
-            border-radius: 20px;
-        }
+        
 
         /* Animaciones de Keyframes */
         @keyframes rotate {
@@ -409,6 +453,56 @@
             /* height: auto; */
         }
 
+        .social-media {
+            text-align: center;
+            padding: 20px 0;
+        }
+        .social-media h2 {
+            margin-bottom: 20px;
+        }
+        .social-media a {
+            color: #007bff;
+            margin: 0 15px;
+            font-size: 2.5rem;
+            transition: color 0.3s;
+
+        }
+        .social-media a:hover {
+            color: #0056b3;            
+        }
+        .social-media i {
+            transition: transform 0.2s ease, color 0.2s ease;
+            text-decoration: none;
+        }
+        .social-media i:hover {
+            transform: scale(1.2);
+            opacity: 0.8;
+        }
+
+        .fa-whatsapp-square {
+            color: #25d366;
+        }
+
+        .fa-github-square {
+            color: #333;
+        }
+
+        .fa-linkedin-square {
+            color: #0a66c2;
+        }
+        
+        .fa-skype-square {
+            color: #00aff0;
+        }
+
+        .map-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.8);
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
         /* Mostrar animaciones para la vista de computadora */
         @media (min-width: 1200px) {
             .lottie-animation-right {
@@ -457,23 +551,47 @@
                 font-size: 1.3rem;
             }
 
-            /* Poner iconos flotantes en la parte inferior */
+            /* Poner iconos flotantes en la parte inferior 
             .social-icons {
                 top: auto;
                 bottom: -40px;
-                right: 10px;
+                right: 15px;
                 flex-direction: row;
-                /* Repartir los íconos horizontalmente por todo el contenedor */
                 justify-content: space-around;
                 padding: 10px;
                 border: 5px solid black;
-                /* Poner los iconos arriba cuando llege al final de la página */
                 position: fixed;
                 z-index: 1000;
                 background: white;
                 border-radius: 10px;
                 box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.6);    
             }    
+            */
+
+            .social-icons {
+                top: 200px;
+                bottom: auto;
+                right: 15px;
+                flex-direction: row;
+                justify-content: space-around;
+                padding: 3px;
+                border: 5px solid black;
+                position: fixed;
+                z-index: 1000;
+                background: white;
+                border-radius: 10px;
+                box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.6); 
+            }    
+
+            .social-icons:hover {
+                transition: transform 0.2s ease, color 0.2s ease;
+                text-decoration: none;
+            }
+            .social-icons:hover {
+                transform: scale(1.2);
+                opacity: 0.8;
+            }
+
 
             /* Poner icono de WhatsApp en la parte inferior */
             .whatsapp-float {
@@ -899,6 +1017,8 @@
 </section>
 
 
+    <!-- Sección de anuncios 
+
     <div class="ad-section">
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8698951889098274"
         crossorigin="anonymous"></script>
@@ -913,6 +1033,100 @@
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
     </div>
+
+    -->
+
+    <!-- Sección de mapa -->
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col-12">
+                <div class="map-container" style="height: 400px;">
+                    <!-- Puedes integrar un mapa de Google Maps aquí -->
+                    <iframe src="https://www.google.com/maps/embed?..." width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Sección de redes sociales -->
+    <section class="social-section">
+    <div class="container social-media">
+        <h2 style="font-family: Carter One;" >🌐 Sígueme en mis Redes Sociales 📱</h2>
+        <a href="https://github.com/Jesus-David-Silva-Rangel-19" target="_blank"><i class="fab fa-github-square"></i></a>
+        <a href="https://www.linkedin.com/in/jes%C3%BAs-david-silva-rangel-77706a260/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="skype:live:.cid.d0450c80256883de?call" target="_blank"><i class="fab fa-skype"></i></a>
+        <a href="https://wa.me/573229608830" target="_blank"><i class="fab fa-whatsapp-square"></i></a>
+        <!--Kaggle-->
+        <a href="https://www.kaggle.com/jesdavsilran" target="_blank"><i class="fab fa-kaggle" style="color: #20beff;"></i></a>
+        <!--Orcid-->
+        <a href="https://orcid.org/0000-0002-0000-0000" target="_blank"><i class="fab fa-orcid" style="color: #a6ce39;"></i></a>
+        <!--Red social X antes llamada twiter-->
+        <a href="https://twitter.com/JesDavSilRan" target="_blank"><i class="fab fa-twitter-square" style="color: #1da1f2;"></i></a>
+        <a href="https://youtube.com" target="_blank" style="color: #ff0000;"><i class="fab fa-youtube"></i></a>
+        
+        <a href="https://twitter.com" target="_blank" style="color: #1da1f2;"><i class="bi bi-twitter"></i></a>
+            
+            <!-- Google Scholar -->
+        <a href="https://scholar.google.com" target="_blank" style="color: #4285f4;">
+            <i class="fas fa-graduation-cap"></i>
+        </a>
+        <!-- Stack Overflow -->
+        <a href="https://stackoverflow.com" target="_blank" style="color: #f48024;">
+            <i class="fab fa-stack-overflow"></i>
+        </a>
+        <!-- ResearchGate -->
+        <a href="https://researchgate.net" target="_blank" style="color: #00ccbb;">
+            <i class="fas fa-flask"></i>
+        </a>
+        <!-- Medium -->
+        <a href="https://medium.com" target="_blank" style="color: #12100e;">
+            <i class="fab fa-medium"></i>
+        </a>
+
+        <!-- Reddit -->
+        <a href="https://reddit.com" target="_blank" style="color: #ff4500;">
+            <i class="fab fa-reddit"></i>
+        </a>
+
+    </div>
+
+
+    <div class="social-icons" >
+
+        <!-- GitHub -->
+        <a href="https://github.com/Jesus-David-Silva-Rangel-19" target="_blank" style="color: #171515;">
+            <i class="bi bi-github"></i>
+        </a>
+
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/jes%C3%BAs-david-silva-rangel-77706a260/" target="_blank" style="color: #0077b5;">
+            <i class="bi bi-linkedin"></i>
+        </a>
+        
+        <!--Kaggle-->
+        <a  href="https://www.kaggle.com/jesdavsilran" target="_blank"><i class="fab fa-kaggle" style="color: #20beff;"></i></a>
+        
+        <!-- Stack Overflow -->
+        <a  href="https://stackoverflow.com" target="_blank" style="color: #f48024;">
+            <i class="bi bi-stack"></i>
+        </a>
+        <!-- Medium -->
+        <a  href="https://medium.com" target="_blank" style="color: #12100e;">
+            <i class="bi bi-medium"></i>
+        </a>
+        <!-- YouTube -->
+        <a  href="https://youtube.com" target="_blank" style="color: #ff0000;">
+            <i class="bi bi-youtube"></i>
+
+        <!--Teléfono-->
+        <a href="tel:+573229608830" style="text-decoration: none; color: #000;"><i class="bi bi-telephone-fill" style="color: green;"></i></a>
+
+        <!--Correo electrónico-->
+        <a href="mailto:jdsr.cuentapersonal@gmail.com" style="text-decoration: none; color: #000;"><i class="bi bi-envelope-fill" style="color: #0d6efd;"></i></a>
+    </div>
+    
+
+  
 
     <!-- Sección de contacto -->
     <section class="contact-section py-5 section-background">
@@ -968,6 +1182,8 @@
     </a>
 
      <!-- Íconos flotantes -->
+
+     <!--
     <div class="social-icons">
         <a href="https://github.com/Jesus-David-Silva-Rangel-19" class="social-icon" target="_blank">
             <i class="fab fa-github"></i>
@@ -981,7 +1197,9 @@
         <a href="mailto:jdsr.cuentapersonal@gmail.com" class="social-icon">
             <i class="fas fa-envelope"></i>
         </a>
+
     </div>
+    -->
 
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3 footer-section">
